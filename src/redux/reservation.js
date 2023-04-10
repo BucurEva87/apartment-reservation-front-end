@@ -13,7 +13,7 @@ const ReservationRequest = (data) => ({
 const getReservation = () => (dispatch) => {
   const params = {
     method: 'GET',
-   
+
   };
   fetch(`${url}reservations`, params)
     .then((res) => res.json())

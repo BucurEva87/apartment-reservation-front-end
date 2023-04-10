@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import reservationData from './reservationApi'; 
+import reservationData from './reservationApi';
 // to come from the api
 
 const initialState = {

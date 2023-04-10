@@ -5,7 +5,7 @@ const reducer = {
   reseravation: ReservationReducer,
 };
 
-export const store = (preloadedState) => configureStore({
+const store = (preloadedState) => configureStore({
   reducer,
   preloadedState,
 });
