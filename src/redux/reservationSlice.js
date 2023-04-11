@@ -30,7 +30,7 @@ export const cancelReservationAsync = createAsyncThunk(
   },
 );
 
-export const ReservationSlice = createSlice({
+const ReservationSlice = createSlice({
   name: 'myReservations',
   initialState,
   extraReducers: (builder) => {
