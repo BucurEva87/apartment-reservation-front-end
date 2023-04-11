@@ -1,13 +1,12 @@
-import { configureStore } from '@reduxjs/toolkit';
-import ReservationReducer from './reservationSlice';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import ReservationSlice from './reservationSlice';
 
-const reducer = {
-  reseravation: ReservationReducer,
-};
+const reducer = combineReducers({
+  reseravation: ReservationSlice,
+});
 
-const store = (preloadedState) => configureStore({
+const store = configureStore({
   reducer,
-  preloadedState,
 });
 
 export default store;
