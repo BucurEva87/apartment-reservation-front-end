@@ -42,7 +42,7 @@ const ReservationSlice = createSlice({
       .addCase(getReservationAsync.fulfilled, (state, action) => {
         state.status = 'idle';
         state.errors = [];
-        state.Reservations = action.payload;
+        state.reservations = action.payload;
       })
       .addCase(getReservationAsync.rejected, (state, action) => {
         state.status = 'error';
