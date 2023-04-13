@@ -1,12 +1,21 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
-import ReservationSlice from './reservationSlice';
+// import { configureStore, combineReducers } from '@reduxjs/toolkit';
+// // import ReservationSlice from './reservationSlice';
+// import apartmentSlice from './apartments/apartmentSlice';
 
-const reducer = combineReducers({
-  reseravation: ReservationSlice,
+// const reducer = combineReducers({
+//   apartment: apartmentSlice,
+// });
+
+// const store = configureStore({
+//   reducer,
+// });
+import { configureStore } from '@reduxjs/toolkit';
+import apartmentsReducer from './apartments/apartmentSlice';
+
+export default configureStore({
+  reducer: {
+    apartments: apartmentsReducer,
+  },
 });
 
-const store = configureStore({
-  reducer,
-});
-
-export default store;
+// export default store;
