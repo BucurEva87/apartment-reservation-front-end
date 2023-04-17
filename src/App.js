@@ -1,21 +1,12 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getApartments } from './redux/apartments/apartmentSlice';
+import React from 'react';
+import { Route, Routes } from 'react-router-dom';
+import Home from './components/home';
 
-const App = () => {
-  const { apartments } = useSelector((state) => state.apartments);
-  
-console.log(apartments)
-  const dispatch = useDispatch;
-  useEffect(() => {
-    dispatch(getApartments());
-  }, [dispatch]);
-  return (
-    <div>
-      {/* {apartments.map((item) => (
-        <h1 key={item.city}>{item.name}</h1>
-      ))} */}
-    </div>
-  );
-};
+const App = () => (
+  <div>
+    <Routes>
+      <Route exact path="/" element={<Home />} />
+    </Routes>
+  </div>
+);
 export default App;
