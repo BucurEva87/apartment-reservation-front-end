@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getApartments } from '../redux/apartments/apartmentSlice';
+import { getApartments } from '../../redux/apartments/apartmentSlice';
 
 const Apartments = () => {
   const dispatch = useDispatch();

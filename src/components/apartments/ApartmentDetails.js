@@ -3,11 +3,11 @@ import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 
 const ApartmentDetails = () => {
-    const { id } = useParams();
-    const { apartments } = useSelector((state) => state.apartments);
-    const apartment = apartments.find((apt) => apt.id === parseInt(id));
-    
-    return (
+  const { id } = useParams();
+  const { apartments } = useSelector((state) => state.apartments);
+  const apartment = apartments.find((apt) => apt.id === id);
+
+  return (
       <div>
         <h2>{apartment.name}</h2>
         <img src={apartment.image} alt="Apartment Image" />
@@ -15,8 +15,7 @@ const ApartmentDetails = () => {
         <p>Location: {apartment.city}</p>
         <p>Price: {apartment.price}</p>
       </div>
-    );
-  };
-  
-  export default ApartmentDetails;
-  
+  );
+};
+
+export default ApartmentDetails;
