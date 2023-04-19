@@ -1,17 +1,15 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
-const ReservationDetails = (id) => {
-  
-  let {
-    id,
-    startDate,
-    endDate,
-    apartmentName,
-    apartmentCity,
-    apartmentDescription,
-    apartmentPrice,
-  }=  reservation;
+const ReservationDetails = ({
+  id,
+  startDate,
+  endDate,
+  apartmentName,
+  apartmentCity,
+  apartmentDescription,
+  apartmentPrice,
+}) => {
   const dispatch = useDispatch();
   return (
   <div className="flex flex-col gap-12 items-center bg-white w-fit m-auto reservation-card  md:flex-row justify-between rounded-sm px-7 py-8 shadow-lg">
