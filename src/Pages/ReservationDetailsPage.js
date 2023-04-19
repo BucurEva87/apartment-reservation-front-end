@@ -1,17 +1,16 @@
 import { ToastContainer } from 'react-toastify';
 import { useSelector } from 'react-redux';
 import 'react-toastify/dist/ReactToastify.css';
-import ReservationsContainer from '../components/reservations/ReservationsContainer';
+import ReservationDetails from '../components/reservations/ReservationDetails';
 
-const ReservationPage = () => {
+const ReservationDetailsPage = () => {
   const { loading, error } = useSelector((state) => state.reservations);
   return (
     <div className='reservation-page'>
-      <ToastContainer />
-      <ReservationsContainer />
+      <ReservationDetails/>
     </div>
 
   );
 };
 
-export default ReservationPage;
+export default ReservationDetailsPage;
