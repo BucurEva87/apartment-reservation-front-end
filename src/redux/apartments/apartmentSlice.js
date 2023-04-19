@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const getApartments = createAsyncThunk('apartments/getApartments', async () => {
-  const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=250&page=1&sparkline=false');
+  const response = await fetch('https://localhost:3000/api/apartments');
   const data = await response.json();
   console.log(data);
   return data;
