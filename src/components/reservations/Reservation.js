@@ -1,10 +1,16 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
 const Reservation = ({
   id, startDate, endDate, apartmentName, apartmentCity,
 }) => {
-  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const showReservationDetails = () => {
+    navigate(`/reservations/${id}`);
+  };
+
   return (
   <div className="flex flex-col gap-12 items-center bg-white w-fit m-auto reservation-card  md:flex-row justify-between rounded-sm px-7 py-8 shadow-lg">
   <li className="flex flex-col gap-6 justify-between items-start w-92 ">
@@ -22,7 +28,7 @@ const Reservation = ({
   </li>
 
   <div className="flex flex-col gap-2 justify-center items-start w-64 ">
-      <button type="button" className="text-dirty-white app-bg-primary rounded w-fit font-light font-roboto px-5 py-2 text-sm">VIEW DETAILS</button>
+      <button onClick={showReservationDetails} type="button" className="text-dirty-white app-bg-primary rounded w-fit font-light font-roboto px-5 py-2 text-sm">VIEW DETAILS</button>
     </div>
 
 </div>

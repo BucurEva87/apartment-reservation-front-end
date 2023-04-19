@@ -9,13 +9,13 @@ const NavBar = () => (
           Apartment-Reserver
         </h1>
       </NavLink >
-      <NavLink to="/" className={({ isActive }) => (isActive ? '' : 'opacity-50')
+      <NavLink to="/reservations" className={({ isActive }) => (isActive ? '' : 'opacity-50')
             }>
         <span className="h-full flex items-center text-black-two text-sm">
           RESERVATIONS
         </span>
       </NavLink >
-      <NavLink to="/apartments" className={({ isActive }) => (isActive ? '' : 'opacity-50')}>
+      <NavLink to="/" className={({ isActive }) => (isActive ? '' : 'opacity-50')}>
         <span className="h-full flex items-center text-black-two text-sm">
           APARTMENTS
         </span>

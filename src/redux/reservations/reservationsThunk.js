@@ -10,7 +10,7 @@ const RESERVATION_FETCHED = 'apartment-reservation-font-end/reservation/RESERVAT
 export const fetchReservations = createAsyncThunk(RESERVATION_FETCHED, async () => {
   const options = {
     headers: {
-      Authorization: 'Bearer J_jJ0fSwnF7elFPkT8ec65xeP_AgyzE-hp3A1fXcEjk',
+      Authorization: 'Bearer 51iZWdYOjjcKd9opeilJOKWYLbo0egtknPTfonE9Rb4',
     },
   };
   const res = await axios.get(`${BASE_URL}/reservations`, options);
