@@ -35,9 +35,11 @@ const reservationsSlice = createSlice({
     builder.addCase(createReservation.fulfilled, (state, action) => {
       const { reservation } = action.payload;
       state.reservations = [...state.reservations, {
-        id: reservation.item_id,
-        title: reservation.title,
-        author: reservation.author,
+        id: reservation.id,
+        apartment_id: reservation.apartment_id,
+        user_id: reservation.user_id,
+        start_date: reservation.start_date,
+        end_date: reservation.end_date,
       }];
     });
 
