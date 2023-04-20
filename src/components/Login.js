@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/authentication/authenticationThunk';
+import login from '../redux/authentication/authenticationThunk';
 import { loadToken } from '../redux/authentication/authenticationSlice';
 
 const Login = () => {
