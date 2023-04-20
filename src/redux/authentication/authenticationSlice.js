@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { login } from './authenticationThunk';
+import { login, register } from './authenticationThunk';
 
 const initialState = {
   user: null,
@@ -17,7 +17,6 @@ const authenticationSlice = createSlice({
       state.user = {
         accessToken: action.payload.token,
       };
-      console.log(state.user);
     },
     logout(state) {
       state.user = null;
@@ -47,7 +46,7 @@ const authenticationSlice = createSlice({
           tokenType: action.payload.token_type,
           accessToken: action.payload.access_token,
           refreshToken: action.payload.refresh_token,
-          expiresIn: action.payload.expires_in, // 7200
+          expiresIn: action.payload.expires_in,
           createdAt: action.payload.created_at,
         };
 
@@ -56,17 +55,19 @@ const authenticationSlice = createSlice({
           expirationTime: new Date().getTime() + (action.payload.expires_in * 1000),
         }));
       })
-      .addCase(login.rejected, (state, action) => {
-        // Dump all key/value pairs from payload to state
-        // Object.entries(action.payload).forEach(([key, value]) => { state[key] = value; });
-        // Update flag
+      .addCase(login.rejected, (state) => {
         state.loading = false;
         state.user = null;
         state.success = false;
+      })
+      .addCase(register.fulfilled, (state, action) => {
+        state.user = {
+          accessToken: JSON.parse(localStorage.getItem('accessToken')).data,
+        };
       });
   },
 });
 
-export const { loadToken, logout } = authenticationSlice.actions;
+export const { loadToken, logout, loginAfterRegistration } = authenticationSlice.actions;
 
 export default authenticationSlice.reducer;

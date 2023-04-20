@@ -6,4 +6,5 @@ export default {
   PORT: '3000',
   USER_AUTH_PATH: '/oauth/token',
   USER_LOGOUT_PATH: '/oauth/revoke',
+  USER_REGISTRATION_PATH: '/api/users',
 };

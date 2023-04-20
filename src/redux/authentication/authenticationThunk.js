@@ -1,10 +1,11 @@
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../clientConfig';
+import { loginAfterRegistration } from './authenticationSlice';
 
-const LOGIN = 'apartment-reservation-font-end/authentication/LOGIN';
-// const LOGOUT = 'apartment-reservation-font-end/authentication/LOGOUT';
+const LOGIN = 'apartment-reservation-front-end/authentication/LOGIN';
+// const LOGOUT = 'apartment-reservation-front-end/authentication/LOGOUT';
+const REGISTER = 'apartment-reservation-front-end/authentication/REGISTER';
 
 export const login = createAsyncThunk(LOGIN, async ({ email, password }) => {
   const path = `${client.BASE_URL}:${client.PORT}${client.USER_AUTH_PATH}`;
@@ -20,9 +21,22 @@ export const login = createAsyncThunk(LOGIN, async ({ email, password }) => {
   return response.data;
 });
 
-// export const logout = createAsyncThunk(LOGOUT, async (reservation, thunkAPI) => {
-//   const res = await axios.post(`${BASE_URL}/reservations`, reservation);
-//   showToastr('The Reservation Added Successfully.');
-//   thunkAPI.dispatch(fetchReservations());
-//   return { data: res.data, reservation };
-// });
+export const register = createAsyncThunk(REGISTER, async ({
+  name, email, password, role,
+}) => {
+  const path = `${client.BASE_URL}:${client.PORT}${client.USER_REGISTRATION_PATH}`;
+  const options = {
+    name,
+    email,
+    password,
+    role,
+    client_id: client.clientId,
+  };
+
+  const response = await axios.post(path, options);
+
+  localStorage.setItem('accessToken', JSON.stringify({
+    data: response.data.user.access_token,
+    expirationTime: new Date().getTime() + (response.data.user.expires_in * 1000),
+  }));
+});

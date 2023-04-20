@@ -7,7 +7,6 @@ import ReservationDetailsPage from './Pages/ReservationDetailsPage';
 import ReservationCreatePage from './Pages/ReservationCreatePage';
 import Apartments from './components/apartments/ApartmentsPage';
 import ApartmentDetails from './components/apartments/ApartmentDetails';
-import Scream from './components/home/Scream';
 
 const App = () => {
   const { user } = useSelector((state) => state.authentication);
@@ -18,10 +17,11 @@ const App = () => {
           <NavBar/>
 
           <Routes>
-           <Route path="/reservations" element={<ReservationPage/>}/>
-           <Route path="/reservations/:id" element={<ReservationDetailsPage/>}/>
            <Route path="/reservations/create/:id" element={<ReservationCreatePage/>}/>
-           <Route exact path="/" element={<Scream />}/>
+           <Route path="/reservations/:id" element={<ReservationDetailsPage/>}/>
+           <Route path="/reservations" element={<ReservationPage/>}/>
+           <Route exact path="/" element={<ReservationPage />}/>
+           <Route element={ <HomePage /> } />
           </Routes>
         </>
      ) }
