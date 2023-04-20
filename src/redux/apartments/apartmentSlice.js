@@ -5,7 +5,7 @@ const BASE_URL = 'http://localhost:3000/api';
 export const getApartments = createAsyncThunk('apartments/getApartments', async () => {
   const options = {
     headers: {
-      Authorization: 'Bearer 51iZWdYOjjcKd9opeilJOKWYLbo0egtknPTfonE9Rb4',
+      Authorization: 'Bearer x5OD7yq453s0yZ6cmpioBYdOU7r_28FfyiBpj7QT_S0',
     },
   };
   const response = await fetch(`${BASE_URL}/apartments`, options);

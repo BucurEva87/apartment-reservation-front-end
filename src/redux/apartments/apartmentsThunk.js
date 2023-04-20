@@ -3,10 +3,9 @@ import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL = 'http://localhost:3000/api';
-
-const RESERVATION_ADDED = 'apartment-reservation-font-end/apartment/RESERVATION_ADDED';
-const RESERVATION_DELETED = 'apartment-reservation-font-end/apartment/RESERVATION_DELETED';
-const RESERVATION_FETCHED = 'apartment-reservation-font-end/apartment/RESERVATION_FETCHED';
+const APARTMENT_ADDED = 'apartment-reservation-font-end/apartment/APARTMENT_ADDED';
+const APARTMENT_DELETED = 'apartment-reservation-font-end/apartment/APARTMENT_DELETED';
+const APARTMENT_FETCHED = 'apartment-reservation-font-end/apartment/APARTMENT_FETCHED';
 
 export const fetchApartments = createAsyncThunk(APARTMENT_FETCHED, async (accessToken) => {
   const options = {
@@ -37,21 +36,25 @@ export const createApartment = createAsyncThunk(APARTMENT_ADDED, async (apartmen
       Authorization: `Bearer ${apartment.accessToken}`,
     },
   };
-  const res = await axios.post(`${BASE_URL}/reservations`, reservation, options);
-  showToastr('The Reservation Added Successfully.');
-  thunkAPI.dispatch(fetchReservations());
-  return { data: res.data, reservation };
+
+  const res = await axios.post(`${BASE_URL}/apartments`, apartment, options);
+  showToastr('The Apartment Added Successfully.');
+  thunkAPI.dispatch(fetchApartments());
+  return { data: res.data, apartment };
 });
 
 /* eslint-disable-next-line max-len */
-export const deleteReservation = createAsyncThunk(RESERVATION_DELETED, async (obj) => {
+export const deleteApartment = createAsyncThunk(APARTMENT_DELETED, async (obj) => {
+
   const options = {
     headers: {
       Authorization: `Bearer ${obj.accessToken}`,
     },
   };
-  const res = await axios.delete(`${BASE_URL}/reservations/${obj.id}`, options);
-  showToastr('The Reservation Deleted Successfully.');
-  const metaData = { reservation_id: obj.id, res_text: res.data };
+
+  const res = await axios.delete(`${BASE_URL}/apartments/${obj.id}`, options);
+  showToastr('The Apartment Deleted Successfully.');
+  const metaData = { apartment_id: obj.id, res_text: res.data };
+
   return metaData;
 });

@@ -1,15 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchReservations, createReservation, deleteReservation } from './apartmentsThunk';
+import { fetchApartments, createApartment, deleteApartment } from './apartmentsThunk';
 
 const initialState = {
-  reservations: [],
+  apartments: [],
+
   loading: true,
   error: null,
   deletedError: null,
 };
 
-const reservationsSlice = createSlice({
-  name: 'reservations',
+const apartmentsSlice = createSlice({
+  name: 'apartments',
   initialState,
   reducers: {
     resetDeletedError(state) {
@@ -17,42 +18,44 @@ const reservationsSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchReservations.pending, (state) => {
+    builder.addCase(fetchApartments.pending, (state) => {
       state.error = null;
       state.loading = true;
     });
-    builder.addCase(fetchReservations.fulfilled, (state, action) => {
+    builder.addCase(fetchApartments.fulfilled, (state, action) => {
       state.error = null;
       state.reservations = action.payload;
       state.loading = false;
     });
-
-    builder.addCase(fetchReservations.rejected, (state, action) => {
+    builder.addCase(fetchApartments.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
     });
 
-    builder.addCase(createReservation.fulfilled, (state, action) => {
-      const { reservation } = action.payload;
-      state.reservations = [...state.reservations, {
-        id: reservation.item_id,
-        title: reservation.title,
-        author: reservation.author,
+    builder.addCase(createApartment.fulfilled, (state, action) => {
+      const { apartment } = action.payload;
+      state.apartments = [...state.apartments, {
+        id: apartment.id,
+        name: apartment.name,
+        description: apartment.description,
+        photo: apartment.photo,
+        city: apartment.city,
+        price: apartment.price,
       }];
     });
 
-    builder.addCase(deleteReservation.rejected, (state, action) => {
+    builder.addCase(deleteApartment.rejected, (state, action) => {
       state.deletedError = action.error.message;
     });
 
-    builder.addCase(deleteReservation.fulfilled, (state, action) => {
-      state.reservations = state.reservations
-        .filter((reservation) => reservation.id !== action.payload.reservation_id);
+    builder.addCase(deleteApartment.fulfilled, (state, action) => {
+      state.apartments = state.apartments
+        .filter((apartment) => apartment.id !== action.payload.apartment_id);
     });
   },
 });
 
 export const {
-  addReservation, removeReservation, resetDeletedError,
-} = reservationsSlice.actions;
-export default reservationsSlice.reducer;
+  addApartment, removeApartment, resetDeletedError,
+} = apartmentsSlice.actions;
+export default apartmentsSlice.reducer;
