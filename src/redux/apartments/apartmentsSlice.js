@@ -3,6 +3,7 @@ import { fetchApartments, createApartment, deleteApartment } from './apartmentsT
 
 const initialState = {
   apartments: [],
+
   loading: true,
   error: null,
   deletedError: null,
@@ -26,7 +27,6 @@ const apartmentsSlice = createSlice({
       state.reservations = action.payload;
       state.loading = false;
     });
-
     builder.addCase(fetchApartments.rejected, (state, action) => {
       state.error = action.error.message;
       state.loading = false;
