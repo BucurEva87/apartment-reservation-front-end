@@ -45,7 +45,6 @@ export const createApartment = createAsyncThunk(APARTMENT_ADDED, async (apartmen
 
 /* eslint-disable-next-line max-len */
 export const deleteApartment = createAsyncThunk(APARTMENT_DELETED, async (obj) => {
-
   const options = {
     headers: {
       Authorization: `Bearer ${obj.accessToken}`,
