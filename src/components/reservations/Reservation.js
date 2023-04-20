@@ -1,14 +1,20 @@
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { TrashIcon, EyeIcon } from '@heroicons/react/solid';
+import { deleteReservation } from '../../redux/reservations/reservationsThunk';
 
 const Reservation = ({
   id, startDate, endDate, apartmentName, apartmentCity,
 }) => {
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const showReservationDetails = () => {
     navigate(`/reservations/${id}`);
+  };
+  const accessToken = 'ZO_BCaCJB-TBWK3M1Id1EmHjIpSHbFPaWMjhT2IBZhw';
+  const handleRemoveReservation = () => {
+    dispatch(deleteReservation({ id, accessToken }));
   };
 
   return (
@@ -27,16 +33,23 @@ const Reservation = ({
     </div>
   </li>
 
-  <div className="flex flex-col gap-2 justify-center items-start w-64 ">
-      <button onClick={showReservationDetails} type="button" className="text-dirty-white app-bg-primary rounded w-fit font-light font-roboto px-5 py-2 text-sm">VIEW DETAILS</button>
-    </div>
+  <div className="flex flex-row gap-2 justify-center items-start w-64">
+    <button onClick={showReservationDetails} type="button" className="text-dirty-white app-bg-primary rounded w-fit font-light font-roboto px-5 py-2 text-sm">
+    <EyeIcon className="h-4 w-4 inline-block mr-1" />
+    VIEW
+    </button>
+    <button onClick={handleRemoveReservation} type="button" className="text-dirty-white app-bg-danger rounded w-fit font-light font-roboto px-5 py-2 text-sm">
+    <TrashIcon className="h-4 w-4 inline-block mr-1" />
+    DELETE
+    </button>
+  </div>
 
 </div>
   );
 };
 
 Reservation.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   startDate: PropTypes.string.isRequired,
   endDate: PropTypes.string.isRequired,
   apartmentName: PropTypes.string.isRequired,

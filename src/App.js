@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import NavBar from './components/NavBar';
 import ReservationPage from './Pages/ReservationPage';
 import ReservationDetailsPage from './Pages/ReservationDetailsPage';
+import ReservationCreatePage from './Pages/ReservationCreatePage';
 import Apartments from './components/apartments/ApartmentsPage';
 import ApartmentDetails from './components/apartments/ApartmentDetails';
 
@@ -14,6 +15,7 @@ const App = () => (
        <Route path="/:id" element={<Apartments/>}/>
        <Route path="/reservations" element={<ReservationPage/>}/>
        <Route path="/reservations/:id" element={<ReservationDetailsPage/>}/>
+       <Route path="/reservations/create/:id" element={<ReservationCreatePage/>}/>
      </Routes>
   </div>
 );

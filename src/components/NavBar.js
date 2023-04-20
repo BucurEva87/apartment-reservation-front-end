@@ -6,7 +6,7 @@ const NavBar = () => (
     <nav className="flex gap-10 flex-col md:flex-row">
       <NavLink to="/">
         <h1 className="app-color-primary h-full flex  items-center text-3xl font-bold  mr-2">
-          Apartment-Reserver
+        HomeHive
         </h1>
       </NavLink >
       <NavLink to="/reservations" className={({ isActive }) => (isActive ? '' : 'opacity-50')

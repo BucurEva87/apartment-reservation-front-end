@@ -14,7 +14,7 @@ const ReservationList = ({ reservations }) => (
 
 ReservationList.propTypes = {
   reservations: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
     startDate: PropTypes.string.isRequired,
     endDate: PropTypes.string.isRequired,
     apartmentName: PropTypes.string.isRequired,

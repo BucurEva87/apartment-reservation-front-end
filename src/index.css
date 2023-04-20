@@ -33,6 +33,13 @@ body {
   color: #fff;
 }
 
+.app-bg-danger {
+  --tw-text-opacity: 1;
+
+  background-color: #ef4444;
+  color: #fff;
+}
+
 .header-mb {
   margin-bottom: 55px;
 }
