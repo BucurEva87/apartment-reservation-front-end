@@ -9,11 +9,10 @@ const ReservationForm = ({ apartmentId }) => {
   const [endDate, setEndDate] = useState('');
   const [errorStartDate, setErrorStartDate] = useState(null);
   const [errorEndDate, setErrorEndDate] = useState(null);
+  const { accessToken } = useSelector((state) => state.authentication.user);
 
   const dispatch = useDispatch();
   const { deletedError } = useSelector((state) => state.reservations);
-
-  const accessToken = 'ZO_BCaCJB-TBWK3M1Id1EmHjIpSHbFPaWMjhT2IBZhw';
 
   useEffect(() => {
     if (deletedError) {

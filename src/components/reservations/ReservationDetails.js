@@ -7,6 +7,7 @@ const ReservationDetails = ({
   apartmentCity,
   apartmentDescription,
   apartmentPrice,
+  apartmentPhoto,
 }) => (
 <div className="flex flex-col items-center">
   <div className="bg-white w-full md:w-1/2 rounded-lg shadow-md overflow-hidden">
@@ -14,6 +15,10 @@ const ReservationDetails = ({
       {apartmentName}
     </div>
     <div className="p-6">
+    <div className="flex items-center justify-center">
+    <img src={apartmentPhoto} alt="apartment thumbnail" className="h-64 w-92 object-cover rounded-md mr-0" />
+    </div>
+
       <p className="text-sm font-medium text-gray-600">{apartmentDescription}</p>
       <div className="flex flex-row items-center justify-between mt-6">
         <div>
