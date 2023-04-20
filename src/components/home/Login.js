@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
-import { login } from '../redux/authentication/authenticationThunk';
-import { loadToken } from '../redux/authentication/authenticationSlice';
+import { login } from '../../redux/authentication/authenticationThunk';
+import { loadToken } from '../../redux/authentication/authenticationSlice';
 
 const Login = () => {
   const dispatch = useDispatch();
@@ -9,9 +9,7 @@ const Login = () => {
   const token = JSON.parse(localStorage.getItem('accessToken'));
 
   if (token && new Date().getTime() <= token.expirationTime) {
-    // console.log('Trying to dispatch')
     const payload = { token: token.data };
-    console.log(payload);
     dispatch(loadToken(payload));
   }
 
