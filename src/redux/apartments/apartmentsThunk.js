@@ -4,28 +4,26 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 
 const BASE_URL = 'http://localhost:3000/api';
 
-const RESERVATION_ADDED = 'apartment-reservation-font-end/reservation/RESERVATION_ADDED';
-const RESERVATION_DELETED = 'apartment-reservation-font-end/reservation/RESERVATION_DELETED';
-const RESERVATION_FETCHED = 'apartment-reservation-font-end/reservation/RESERVATION_FETCHED';
+const RESERVATION_ADDED = 'apartment-reservation-font-end/apartment/RESERVATION_ADDED';
+const RESERVATION_DELETED = 'apartment-reservation-font-end/apartment/RESERVATION_DELETED';
+const RESERVATION_FETCHED = 'apartment-reservation-font-end/apartment/RESERVATION_FETCHED';
 
-export const fetchReservations = createAsyncThunk(RESERVATION_FETCHED, async (accessToken) => {
+export const fetchApartments = createAsyncThunk(APARTMENT_FETCHED, async (accessToken) => {
   const options = {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   };
-  const res = await axios.get(`${BASE_URL}/reservations`, options);
-  const reservations = res.data.reservations.map((reservation) => ({
-    id: reservation.id,
-    startDate: reservation.start_date,
-    endDate: reservation.end_date,
-    apartmentName: reservation.apartment.name,
-    apartmentDescription: reservation.apartment.description,
-    apartmentCity: reservation.apartment.city,
-    apartmentPrice: reservation.apartment.price,
-    apartmentPhoto: reservation.apartment.photo,
+  const res = await axios.get(`${BASE_URL}/apartments`, options);
+  const apartments = res.data.apartments.map((apartment) => ({
+    id: apartment.id,
+    name: apartment.name,
+    description: apartment.description,
+    city: apartment.city,
+    price: apartment.price,
+    photo: apartment.photo,
   }));
-  return reservations;
+  return apartments;
 });
 
 const showToastr = (msg) => {
@@ -33,10 +31,10 @@ const showToastr = (msg) => {
 };
 
 /* eslint-disable-next-line max-len */
-export const createReservation = createAsyncThunk(RESERVATION_ADDED, async (reservation, thunkAPI) => {
+export const createApartment = createAsyncThunk(APARTMENT_ADDED, async (apartment, thunkAPI) => {
   const options = {
     headers: {
-      Authorization: `Bearer ${reservation.accessToken}`,
+      Authorization: `Bearer ${apartment.accessToken}`,
     },
   };
   const res = await axios.post(`${BASE_URL}/reservations`, reservation, options);
