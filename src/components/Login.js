@@ -23,11 +23,11 @@ const Login = () => {
   };
 
   return (
-    <>
-      <input type="email" name="email" id="email" ref={emailRef} />
-      <input type="password" name="password" id="password" ref={passwordRef} />
-      <button type="button" onClick={handleLogin}>Sign in</button>
-    </>
+    <div className='form-group'>
+      <input type="email" name="email" id="email" ref={emailRef} className="form-control" />
+      <input type="password" name="password" id="password" ref={passwordRef} className="form-control" />
+      <button type="button" onClick={handleLogin} className="btn btn-primary btn-sm">Sign in</button>
+    </div>
   );
 };
 
