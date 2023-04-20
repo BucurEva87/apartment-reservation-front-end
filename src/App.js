@@ -5,6 +5,8 @@ import Login from './components/Login';
 import ReservationPage from './Pages/ReservationPage';
 import ReservationDetailsPage from './Pages/ReservationDetailsPage';
 import ReservationCreatePage from './Pages/ReservationCreatePage';
+import Apartments from './components/apartments/ApartmentsPage';
+import ApartmentDetails from './components/apartments/ApartmentDetails';
 
 const App = () => {
   const { user } = useSelector((state) => state.authentication);
