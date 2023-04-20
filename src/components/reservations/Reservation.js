@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { TrashIcon, EyeIcon } from '@heroicons/react/solid';
 import { deleteReservation } from '../../redux/reservations/reservationsThunk';
@@ -12,7 +12,7 @@ const Reservation = ({
   const showReservationDetails = () => {
     navigate(`/reservations/${id}`);
   };
-  const accessToken = 'ZO_BCaCJB-TBWK3M1Id1EmHjIpSHbFPaWMjhT2IBZhw';
+  const { accessToken } = useSelector((state) => state.authentication.user);
   const handleRemoveReservation = () => {
     dispatch(deleteReservation({ id, accessToken }));
   };
