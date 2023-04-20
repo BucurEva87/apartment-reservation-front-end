@@ -23,9 +23,9 @@ const Login = () => {
   };
 
   return (
-    <div className='form-group'>
-      <input type="email" name="email" id="email" ref={emailRef} className="form-control" />
-      <input type="password" name="password" id="password" ref={passwordRef} className="form-control" />
+    <div className='form'>
+      <input type="email" name="email" id="email" ref={emailRef} className="form-control" placeholder='Email'/>
+      <input type="password" name="password" id="password" ref={passwordRef} className="form-control" placeholder='password' />
       <button type="button" onClick={handleLogin} className="btn btn-primary btn-sm">Sign in</button>
     </div>
   );

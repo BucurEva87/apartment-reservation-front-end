@@ -66,3 +66,24 @@ body {
   padding: 29px;
   font-size: larger;
 }
+
+.form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+.form-control{
+  border: 2px solid rgb(46, 44, 44);
+  width: 50%;
+  padding: 5px;
+  border-radius: 20px;
+}
+.btn{
+  background: #0e72ed;
+  color: #fff;
+  width: 50%;
+  border-radius: 10px;
+  padding: 5px;
+  font-size: 20px;
+}
