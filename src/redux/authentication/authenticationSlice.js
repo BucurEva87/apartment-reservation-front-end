@@ -68,6 +68,6 @@ const authenticationSlice = createSlice({
   },
 });
 
-export const { loadToken, logout, loginAfterRegistration } = authenticationSlice.actions;
+export const { loadToken, logout } = authenticationSlice.actions;
 
 export default authenticationSlice.reducer;

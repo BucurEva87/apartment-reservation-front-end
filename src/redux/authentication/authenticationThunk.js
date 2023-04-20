@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import client from '../clientConfig';
-import { loginAfterRegistration } from './authenticationSlice';
 
 const LOGIN = 'apartment-reservation-front-end/authentication/LOGIN';
 // const LOGOUT = 'apartment-reservation-front-end/authentication/LOGOUT';
