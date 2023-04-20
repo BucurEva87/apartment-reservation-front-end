@@ -5,10 +5,11 @@ import ReservationList from './ReservationList';
 
 const ReservationsContainer = () => {
   const { reservations } = useSelector((state) => state.reservations);
+  const accessToken = 'ZO_BCaCJB-TBWK3M1Id1EmHjIpSHbFPaWMjhT2IBZhw';
   const dispatch = useDispatch();
   useEffect(() => {
     if (reservations.length === 0) {
-      dispatch(fetchReservations());
+      dispatch(fetchReservations(accessToken));
     }
   }, []);
 

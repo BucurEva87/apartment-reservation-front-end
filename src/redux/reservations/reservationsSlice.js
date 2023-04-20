@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchReservations, createReservation } from './reservationsThunk';
+import { fetchReservations, createReservation, deleteReservation } from './reservationsThunk';
 
 const initialState = {
   reservations: [],
@@ -40,10 +40,19 @@ const reservationsSlice = createSlice({
         author: reservation.author,
       }];
     });
+
+    builder.addCase(deleteReservation.rejected, (state, action) => {
+      state.deletedError = action.error.message;
+    });
+
+    builder.addCase(deleteReservation.fulfilled, (state, action) => {
+      state.reservations = state.reservations
+        .filter((reservation) => reservation.id !== action.payload.reservation_id);
+    });
   },
 });
 
 export const {
-  resetDeletedError,
-} = reservationsSlice;
+  addReservation, removeReservation, resetDeletedError,
+} = reservationsSlice.actions;
 export default reservationsSlice.reducer;
