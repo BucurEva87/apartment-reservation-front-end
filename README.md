@@ -74,6 +74,7 @@ This is the base ERD diagram for this project
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
+There is the link to [back-end repo](https://github.com/BucurEva87/apartment-reservation-back-end)
 To get a local copy up and running, follow these steps.
 
 ### Prerequisites
