@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const createApartment = createAsyncThunk('apartments/create', async (apartmentData) => {
-  const response = await fetch(url, {
+  const response = await fetch('', {
     method: 'POST',
     body: JSON.stringify(apartmentData),
     headers: {
