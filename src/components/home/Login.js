@@ -1,17 +1,9 @@
 import React, { useRef } from 'react';
 import { useDispatch } from 'react-redux';
 import { login } from '../../redux/authentication/authenticationThunk';
-import { loadToken } from '../../redux/authentication/authenticationSlice';
 
 const Login = () => {
   const dispatch = useDispatch();
-
-  const token = JSON.parse(localStorage.getItem('accessToken'));
-
-  if (token && new Date().getTime() <= token.expirationTime) {
-    const payload = { token: token.data };
-    dispatch(loadToken(payload));
-  }
 
   const emailRef = useRef();
   const passwordRef = useRef();

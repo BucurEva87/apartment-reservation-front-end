@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import NavBar from './components/NavBar';
 import HomePage from './Pages/HomePage';
@@ -17,11 +17,11 @@ const App = () => {
           <NavBar/>
 
           <Routes>
-           <Route path="/reservations/create/:id" element={<ReservationCreatePage/>}/>
-           <Route path="/reservations/:id" element={<ReservationDetailsPage/>}/>
-           <Route path="/reservations" element={<ReservationPage/>}/>
-           <Route exact path="/" element={<ReservationPage />}/>
-           <Route element={ <HomePage /> } />
+           <Route path="/reservations/create/:id" element={ <ReservationCreatePage/> }/>
+           <Route path="/reservations/:id" element={ <ReservationDetailsPage/> }/>
+           <Route path="/reservations" element={ <ReservationPage/> }/>
+           <Route path="/" element={ <ReservationPage /> }/>
+           <Route path="*" element={ <Navigate to="/reservations" replace /> } />
           </Routes>
         </>
      ) }
