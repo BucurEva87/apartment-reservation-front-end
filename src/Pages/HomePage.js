@@ -19,6 +19,8 @@ const HomePage = () => {
       const payload = { token: token.data };
       dispatch(loadToken(payload));
       redirect('/');
+    } else {
+      localStorage.removeItem('accessToken');
     }
   } else {
     redirect('/');
