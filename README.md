@@ -102,50 +102,37 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
-<!--
-Example command:
+- for the front end rep
 
-```sh
-  cd my-project
-  gem install
-```
---->
+`npm install`
+
+- for the back end repo
+
+`bundle install --force`
 
 ### Usage
 
 To run the project, execute the following command:
 
-<!--
-Example command:
+- for the back end repo
 
-```sh
-  rails server
-```
---->
+`rails s`
+
+- for the front end rep
+
+`npm start`
 
 ### Run tests
 
 To run tests, run the following command:
 
-<!--
-Example command:
-
-```sh
-  bin/rails test test/models/article_test.rb
-```
---->
+`npm test `
 
 ### Deployment
 
 You can deploy this project using:
 
-<!--
-Example:
-
-```sh
-
-```
- -->
+`npm run deploy`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
