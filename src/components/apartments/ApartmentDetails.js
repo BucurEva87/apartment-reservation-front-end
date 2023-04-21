@@ -1,21 +1,15 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
 
-const ApartmentDetails = () => {
-  const { id } = useParams();
-  const { apartments } = useSelector((state) => state.apartments);
-  const apartment = apartments.find((apt) => apt.id === id);
-
-  return (
+const ApartmentDetails = ({
+  name, photo, description, city, price,
+}) => (
       <div>
-        <h2>{apartment.name}</h2>
-        <img src={apartment.image} alt="Apartment Image" />
-        <p>{apartment.description}</p>
-        <p>Location: {apartment.city}</p>
-        <p>Price: {apartment.price}</p>
+        <h2>{name}</h2>
+        <img src={photo} alt="Apartment Image" />
+        <p>{description}</p>
+        <p>Location: {city}</p>
+        <p>Price: {price}</p>
       </div>
-  );
-};
+);
 
 export default ApartmentDetails;

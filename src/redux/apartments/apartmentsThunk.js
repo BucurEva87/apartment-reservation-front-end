@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import clientConfig from '../clientConfig';
 
-const BASE_URL = 'http://localhost:3000/api';
-const APARTMENT_ADDED = 'apartment-reservation-font-end/apartment/APARTMENT_ADDED';
-const APARTMENT_DELETED = 'apartment-reservation-font-end/apartment/APARTMENT_DELETED';
-const APARTMENT_FETCHED = 'apartment-reservation-font-end/apartment/APARTMENT_FETCHED';
+const APARTMENT_ADDED = 'apartment-reservation-front-end/apartment/APARTMENT_ADDED';
+const APARTMENT_DELETED = 'apartment-reservation-front-end/apartment/APARTMENT_DELETED';
+const APARTMENT_FETCHED = 'apartment-reservation-front-end/apartment/APARTMENT_FETCHED';
 
 export const fetchApartments = createAsyncThunk(APARTMENT_FETCHED, async (accessToken) => {
   const options = {
@@ -13,7 +13,10 @@ export const fetchApartments = createAsyncThunk(APARTMENT_FETCHED, async (access
       Authorization: `Bearer ${accessToken}`,
     },
   };
-  const res = await axios.get(`${BASE_URL}/apartments`, options);
+  const res = await axios.get(
+    `${clientConfig.BASE_URL}:${clientConfig.PORT}${clientConfig.APARTMENTS_PATH}`,
+    options,
+  );
   const apartments = res.data.apartments.map((apartment) => ({
     id: apartment.id,
     name: apartment.name,
@@ -29,32 +32,42 @@ const showToastr = (msg) => {
   toast(msg);
 };
 
-/* eslint-disable-next-line max-len */
-export const createApartment = createAsyncThunk(APARTMENT_ADDED, async (apartment, thunkAPI) => {
-  const options = {
-    headers: {
-      Authorization: `Bearer ${apartment.accessToken}`,
-    },
-  };
+export const createApartment = createAsyncThunk(
+  APARTMENT_ADDED,
+  async ({ apartment, accessToken }, thunkAPI) => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
 
-  const res = await axios.post(`${BASE_URL}/apartments`, apartment, options);
-  showToastr('The Apartment Added Successfully.');
-  thunkAPI.dispatch(fetchApartments());
-  return { data: res.data, apartment };
-});
+    const res = await axios.post(
+      `${clientConfig.BASE_URL}:${clientConfig.PORT}${clientConfig.NEW_APARTMENT_PATH}`,
+      apartment,
+      options,
+    );
+    showToastr('The Apartment Added Successfully.');
+    thunkAPI.dispatch(fetchApartments(accessToken));
+    return { data: res.data, apartment };
+  },
+);
 
-/* eslint-disable-next-line max-len */
-export const deleteApartment = createAsyncThunk(APARTMENT_DELETED, async (obj) => {
+export const deleteApartment = createAsyncThunk(
+  APARTMENT_DELETED,
+  async ({ id, accessToken }, thunkAPI) => {
+    const options = {
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
+    };
 
-  const options = {
-    headers: {
-      Authorization: `Bearer ${obj.accessToken}`,
-    },
-  };
+    const res = await axios.delete(
+      `${clientConfig.BASE_URL}:${clientConfig.PORT}${clientConfig.DESTROY_APARTMENT_PATH}/${id}`,
+      options,
+    );
+    showToastr('The Apartment Deleted Successfully.');
+    thunkAPI.dispatch(fetchApartments(accessToken));
 
-  const res = await axios.delete(`${BASE_URL}/apartments/${obj.id}`, options);
-  showToastr('The Apartment Deleted Successfully.');
-  const metaData = { apartment_id: obj.id, res_text: res.data };
-
-  return metaData;
-});
+    return { data: res.data };
+  },
+);

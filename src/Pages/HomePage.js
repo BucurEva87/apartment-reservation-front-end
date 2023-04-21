@@ -27,7 +27,6 @@ const HomePage = () => {
   }
 
   return <div className='home-page'>
-    <h3>HomePage</h3>
     <ToastContainer />
     <Routes>
       <Route path="/user/new" element={ <RegistrationForm /> } />

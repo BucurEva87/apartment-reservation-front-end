@@ -24,7 +24,7 @@ const apartmentsSlice = createSlice({
     });
     builder.addCase(fetchApartments.fulfilled, (state, action) => {
       state.error = null;
-      state.reservations = action.payload;
+      state.apartments = action.payload;
       state.loading = false;
     });
     builder.addCase(fetchApartments.rejected, (state, action) => {
