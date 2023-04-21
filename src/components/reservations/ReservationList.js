@@ -4,7 +4,7 @@ import withLoadingAndError from './withLoadingAndError';
 
 const ReservationList = ({ reservations }) => (
     <>
-    {(reservations.length === 0) && <h3 className="textError">Please Add Reservation</h3>}
+    {(reservations.length === 0) && <h3 className="textError">No Reservation Found</h3>}
     {reservations.map((reservation) => (
       <Reservation key={reservation.id} {...reservation} />
 
