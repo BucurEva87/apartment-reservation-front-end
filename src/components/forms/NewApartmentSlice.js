@@ -1,16 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 export const createApartment = createAsyncThunk('apartments/create', async (apartmentData) => {
-  const response = await fetch('', {
-    method: 'POST',
-    body: JSON.stringify(apartmentData),
-    headers: {
-      Authorization: 'Bearer 51iZWdYOjjcKd9opeilJOKWYLbo0egtknPTfonE9Rb4',
-    },
-  });
-  const data = await response.json();
-  return data;
-});
+      const response = await fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(apartmentData),
+        headers: {
+          Authorization: 'Bearer 51iZWdYOjjcKd9opeilJOKWYLbo0egtknPTfonE9Rb4',
+        }
+      });
+      const data = await response.json();
+      return data;
+    }
+  );
 
 const apartmentSlice = createSlice({
   name: 'apartments',

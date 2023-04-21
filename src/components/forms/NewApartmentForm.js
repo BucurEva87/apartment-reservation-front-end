@@ -13,9 +13,7 @@ function NewApartmentForm() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    dispatch(createApartment({
-      name, address, price, description, photo,
-    }));
+    dispatch(createApartment({ name, address, price, description, photo }));
     setName('');
     setAddress('');
     setPrice('');
