@@ -14,6 +14,7 @@ export const fetchApartments = createAsyncThunk(APARTMENT_FETCHED, async (access
     },
   };
   const res = await axios.get(`${BASE_URL}/apartments`, options);
+
   const apartments = res.data.apartments.map((apartment) => ({
     id: apartment.id,
     name: apartment.name,
@@ -44,8 +45,7 @@ export const createApartment = createAsyncThunk(APARTMENT_ADDED, async (apartmen
 });
 
 /* eslint-disable-next-line max-len */
-export const deleteApartment = createAsyncThunk(APARTMENT_DELETED, async (obj) => {
-
+export const deleteApartment = createAsyncThunk(APARTMENT_DELETED, async (obj, thunkAPI) => {
   const options = {
     headers: {
       Authorization: `Bearer ${obj.accessToken}`,
@@ -54,6 +54,7 @@ export const deleteApartment = createAsyncThunk(APARTMENT_DELETED, async (obj) =
 
   const res = await axios.delete(`${BASE_URL}/apartments/${obj.id}`, options);
   showToastr('The Apartment Deleted Successfully.');
+  thunkAPI.dispatch(fetchApartments(obj.accessToken));
   const metaData = { apartment_id: obj.id, res_text: res.data };
 
   return metaData;
