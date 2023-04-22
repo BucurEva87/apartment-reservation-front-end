@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router';
 import { createReservation } from '../../redux/reservations/reservationsThunk';
@@ -17,6 +18,7 @@ const ReservationForm = ({ apartmentId }) => {
   const { apartments } = useSelector((state) => state.apartments);
   const apartment = apartments.find((apartment) => apartment.id === Number(id));
 
+  const navigate = useNavigate();
   const resetForm = () => {
     setStartDate('');
     setEndDate('');
@@ -46,12 +48,15 @@ const ReservationForm = ({ apartmentId }) => {
     }
 
     dispatch(createReservation({
-      apartment_id: apartmentId,
-      start_date: mStartDate,
-      end_date: mEndDate,
+      reservation: {
+        apartment_id: apartmentId,
+        start_date: mStartDate,
+        end_date: mEndDate,
+      },
       accessToken,
     }));
     resetForm();
+    navigate('/');
   };
 
   return (

@@ -6,9 +6,9 @@ import ApartmentsContainer from '../components/apartments/ApartmentsContainer';
 const ApartmentPage = () => {
   const { loading, error } = useSelector((state) => state.apartments);
   return (
-    <div className='reservation-page'>
+    <div className='apartment-page'>
       <ToastContainer />
-      < ApartmentsContainer />
+      <ApartmentsContainer />
     </div>
 
   );

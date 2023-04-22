@@ -7,9 +7,9 @@ const ReservationsContainer = () => {
   const { reservations } = useSelector((state) => state.reservations);
   const { accessToken } = useSelector((state) => state.authentication.user);
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (reservations.length === 0) {
-      console.log('access tokennnn', accessToken);
       dispatch(fetchReservations(accessToken));
     }
   }, []);

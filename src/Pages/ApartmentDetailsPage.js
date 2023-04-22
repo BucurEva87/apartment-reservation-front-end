@@ -7,7 +7,7 @@ import ApartmentDetails from '../components/apartments/ApartmentDetails';
 const ApartmentDetailsPage = () => {
   const { id } = useParams();
   const { loading, error, apartments } = useSelector((state) => state.apartments);
-  const apartment = apartments.find((apartment) => apartment.id === Number(id));
+  const apartment = apartments.find((apartment) => apartment.id === +id);
   return (
     <div className='apartment-page'>
       <ApartmentDetails {...apartment}/>
