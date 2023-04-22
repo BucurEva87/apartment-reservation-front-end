@@ -48,9 +48,11 @@ const ReservationForm = ({ apartmentId }) => {
     }
 
     dispatch(createReservation({
-      apartment_id: apartmentId,
-      start_date: mStartDate,
-      end_date: mEndDate,
+      reservation: {
+        apartment_id: apartmentId,
+        start_date: mStartDate,
+        end_date: mEndDate,
+      },
       accessToken,
     }));
     resetForm();

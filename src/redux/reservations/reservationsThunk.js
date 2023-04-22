@@ -37,17 +37,16 @@ const showToastr = (msg) => {
 
 export const createReservation = createAsyncThunk(
   RESERVATION_ADDED,
-  async (reservation, thunkAPI) => {
+  async ({ reservation, accessToken }, thunkAPI) => {
     const path = `${client.BASE_URL}:${client.PORT}${client.NEW_RESERVATION_PATH}`;
     const options = {
       headers: {
-        Authorization: `Bearer ${reservation.accessToken}`,
+        Authorization: `Bearer ${accessToken}`,
       },
-      reservation,
     };
-    const res = await axios.post(path, options);
+    const res = await axios.post(path, reservation, options);
     showToastr('The Reservation Added Successfully.');
-    thunkAPI.dispatch(fetchReservations());
+    thunkAPI.dispatch(fetchReservations(accessToken));
     return { data: res.data, reservation };
   },
 );
