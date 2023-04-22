@@ -1,7 +1,7 @@
 export default {
   grantType: 'password',
-  clientId: 'Fysbopio6HbfJVP18k38Uw_LIhi1H9nuY_StRmBa4no',
-  clientSecret: 'CeG_GfhyrVDCMJkvS06-E3XD6jr-ydPq0L3CPEv-7JQ',
+  clientId: 'vXlJ6ENTEnyme1j3mSIBmY8zSqNExXGXvLGaFAjh_oU',
+  clientSecret: 'eYylaawmOukDyUI2cB9iR0oKKuUIsi7ix_XIMz3K6fY',
   BASE_URL: 'http://localhost',
   PORT: '3000',
   USER_AUTH_PATH: '/oauth/token',
@@ -10,4 +10,7 @@ export default {
   APARTMENTS_PATH: '/api/apartments',
   NEW_APARTMENT_PATH: '/api/apartments',
   DESTROY_APARTMENT_PATH: '/api/apartments',
+  RESERVATIONS_PATH: '/api/reservations',
+  NEW_RESERVATION_PATH: '/api/reservations',
+  DESTROY_RESERVATION_PATH: '/api/reservations'
 };
