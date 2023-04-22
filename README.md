@@ -81,13 +81,8 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-<!--
-Example command:
-
-```sh
- gem install rails
-```
- -->
+- [Node.js](https://nodejs.org/en/download)
+- NPM (Node Package Manager). It comes with Node.
 
 ### Setup
 
@@ -102,42 +97,52 @@ Clone this repository to your desired folder:
 
 Install this project with:
 
-<!--
-Example command:
-
 ```sh
-  cd my-project
-  gem install
+  npm install
 ```
---->
 
 ### Usage
 
 To run the project, execute the following command:
 
-<!--
 Example command:
 
 ```sh
-  rails server
+  npm start
 ```
---->
+
+Note that this project was set up to run on port 3001 by default.
+If, for any reason, your port 3001 is busy running something else,
+you will be asked if you're willing to run this process on another
+port.
 
 ### Run tests
 
 To run tests, run the following command:
 
-<!--
-Example command:
+```sh
+  npm test
+```
+
+### Additional informations
+
+Please keep in mind that, when you set up the server, after you run
+`rails db:seed` a message will appear in the console informing you of
+the `client_id` and `client_secret`. Copy these values inside your
+`src/redux/clientConfig.js` file. If you forgot to copy the values,
+you can grab them later by running:
 
 ```sh
-  bin/rails test test/models/article_test.rb
+  rails c
+  # This is going to return the client_id value
+  Doorkeeper::Application.first.uid
+  # This will return the client_secret value
+  Doorkeeper::Application.first.read_attribute(:secret)
 ```
---->
 
-### Deployment
+<!-- ### Deployment -->
 
-You can deploy this project using:
+<!-- You can deploy this project using: -->
 
 <!--
 Example:
@@ -187,9 +192,9 @@ Example:
 
 > Describe 1 - 3 features you will add to the project.
 
-- [ ] **Add more tests**
-- [ ] **Add statistics**
-- [ ] **Add photo2, 3, etc**
+- [x] **Add more tests**
+- [x] **Add statistics**
+- [x] **Add photo2, 3, etc**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
