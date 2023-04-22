@@ -22,7 +22,7 @@ const ReservationForm = ({ apartmentId }) => {
     }
   }, [deletedError]);
 
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const resetForm = () => {
     setStartDate('');
     setEndDate('');
@@ -50,7 +50,7 @@ const ReservationForm = ({ apartmentId }) => {
     if (!isValid(mStartDate, mEndDate)) {
       return;
     }
-    
+
     dispatch(createReservation({
       apartment_id: apartmentId,
       start_date: mStartDate,
@@ -58,7 +58,7 @@ const ReservationForm = ({ apartmentId }) => {
       accessToken,
     }));
     resetForm();
-    navigate('/')
+    navigate('/');
   };
 
   return (
