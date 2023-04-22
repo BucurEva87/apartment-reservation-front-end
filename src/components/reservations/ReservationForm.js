@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
+import { useParams } from 'react-router';
 import { createReservation } from '../../redux/reservations/reservationsThunk';
 import { resetDeletedError } from '../../redux/reservations/reservationsSlice';
 
@@ -10,16 +11,11 @@ const ReservationForm = ({ apartmentId }) => {
   const [errorStartDate, setErrorStartDate] = useState(null);
   const [errorEndDate, setErrorEndDate] = useState(null);
   const { accessToken } = useSelector((state) => state.authentication.user);
-
+  const { id } = useParams();
   const dispatch = useDispatch();
   const { deletedError } = useSelector((state) => state.reservations);
-
-  useEffect(() => {
-    if (deletedError) {
-      toast.error(deletedError);
-      dispatch(resetDeletedError());
-    }
-  }, [deletedError]);
+  const { apartments } = useSelector((state) => state.apartments);
+  const apartment = apartments.find((apartment) => apartment.id === Number(id));
 
   const resetForm = () => {
     setStartDate('');
@@ -62,9 +58,12 @@ const ReservationForm = ({ apartmentId }) => {
 
     <div className="flex justify-center">
     <div className="w-full sm:w-3/4 lg:w-1/2 bg-white shadow-md rounded-md p-8">
+    <div className="flex items-center justify-center">
+    <img src={apartment.photo} alt="apartment thumbnail" className="h-64 w-92 object-cover rounded-md mr-0" />
+    </div>
       <form onSubmit={handleSubmit} className="flex flex-col gap-6 w-full">
-        <h2 className="text-xl  text-warm-grey text-center"><span className='font-bold'>{'House in the country side'}</span> in <span className='font-bold'>{'Miami'}</span></h2>
-        <p className="text-lg font-medium text-warm-grey text-center">${'100'} USD / night</p>
+        <h2 className="text-xl  text-warm-grey text-center"><span className='font-bold'>{apartment.name}</span> in <span className='font-bold'>{apartment.city}</span></h2>
+        <p className="text-lg font-medium text-warm-grey text-center">${apartment.price} USD / night</p>
         <div className="flex flex-row gap-6">
           <div className="w-full sm:w-1/2 flex flex-col">
             <label htmlFor="startDate" className="block mb-2 font-medium text-gray-700">Select Start Date</label>
@@ -94,7 +93,7 @@ const ReservationForm = ({ apartmentId }) => {
           </div>
         </div>
         <button type="submit" className="w-72 py-2 mx-auto mb-6 font-medium text-white app-bg-primary rounded-md hover:bg-primary-600 focus:outline-none focus:bg-primary-600">
-          Reserve Now
+          RESERVE NOW
         </button>
       </form>
     </div>

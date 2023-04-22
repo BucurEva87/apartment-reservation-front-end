@@ -26,6 +26,7 @@ const apartmentsSlice = createSlice({
       state.error = null;
       state.apartments = action.payload;
       state.loading = false;
+      console.log('oooooon reducer', action.payload);
     });
     builder.addCase(fetchApartments.rejected, (state, action) => {
       state.error = action.error.message;
