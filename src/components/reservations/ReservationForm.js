@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { createReservation } from '../../redux/reservations/reservationsThunk';
 import { resetDeletedError } from '../../redux/reservations/reservationsSlice';
@@ -21,6 +22,7 @@ const ReservationForm = ({ apartmentId }) => {
     }
   }, [deletedError]);
 
+  const navigate = useNavigate()
   const resetForm = () => {
     setStartDate('');
     setEndDate('');
@@ -48,7 +50,7 @@ const ReservationForm = ({ apartmentId }) => {
     if (!isValid(mStartDate, mEndDate)) {
       return;
     }
-
+    
     dispatch(createReservation({
       apartment_id: apartmentId,
       start_date: mStartDate,
@@ -56,6 +58,7 @@ const ReservationForm = ({ apartmentId }) => {
       accessToken,
     }));
     resetForm();
+    navigate('/')
   };
 
   return (
