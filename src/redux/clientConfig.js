@@ -1,7 +1,7 @@
 export default {
   grantType: 'password',
-  clientId: 'qc4LXgUhL_B0sLoqfrDyjLJd3JxhjocB5Ydd8PCXBqo',
-  clientSecret: 'x2Z1lMtpqGed2p4hXBuuDu689avOv-0aRRXleX3p5WM',
+  clientId: 'Fysbopio6HbfJVP18k38Uw_LIhi1H9nuY_StRmBa4no',
+  clientSecret: 'CeG_GfhyrVDCMJkvS06-E3XD6jr-ydPq0L3CPEv-7JQ',
   BASE_URL: 'http://localhost',
   PORT: '3000',
   USER_AUTH_PATH: '/oauth/token',
