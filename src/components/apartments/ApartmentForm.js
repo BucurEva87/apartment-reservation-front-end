@@ -57,7 +57,7 @@ const ApartmentForm = ({ apartmentId }) => {
     //   return;
     // }
 
-    dispatch(createApartment(formData, accessToken));
+    dispatch(createApartment({ apartment: formData, accessToken }));
     // resetForm();
   };
 
