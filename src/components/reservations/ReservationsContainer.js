@@ -9,7 +9,6 @@ const ReservationsContainer = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     if (reservations.length === 0) {
-      console.log('access tokennnn', accessToken);
       dispatch(fetchReservations(accessToken));
     }
   }, []);

@@ -10,7 +10,7 @@ const RESERVATION_FETCHED = 'apartment-reservation-front-end/reservation/RESERVA
 export const fetchReservations = createAsyncThunk(
   RESERVATION_FETCHED,
   async (accessToken) => {
-    const path = `${client.BASE_URL}:${client.PORT}${client.RESERVATIONS_PATH}`
+    const path = `${client.BASE_URL}:${client.PORT}${client.RESERVATIONS_PATH}`;
     const options = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -28,7 +28,7 @@ export const fetchReservations = createAsyncThunk(
       apartmentPhoto: reservation.apartment.photo,
     }));
     return reservations;
-  }
+  },
 );
 
 const showToastr = (msg) => {
@@ -38,24 +38,24 @@ const showToastr = (msg) => {
 export const createReservation = createAsyncThunk(
   RESERVATION_ADDED,
   async (reservation, thunkAPI) => {
-    const path = `${client.BASE_URL}:${client.PORT}${client.NEW_RESERVATION_PATH}`
+    const path = `${client.BASE_URL}:${client.PORT}${client.NEW_RESERVATION_PATH}`;
     const options = {
       headers: {
         Authorization: `Bearer ${reservation.accessToken}`,
       },
-      reservation
+      reservation,
     };
     const res = await axios.post(path, options);
     showToastr('The Reservation Added Successfully.');
     thunkAPI.dispatch(fetchReservations());
     return { data: res.data, reservation };
-  }
+  },
 );
 
 export const deleteReservation = createAsyncThunk(
   RESERVATION_DELETED,
   async ({ reservation, accessToken }) => {
-    const path = `${client.BASE_URL}:${client.PORT}${client.DESTROY_RESERVATION_PATH}`
+    const path = `${client.BASE_URL}:${client.PORT}${client.DESTROY_RESERVATION_PATH}`;
     const options = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -64,5 +64,5 @@ export const deleteReservation = createAsyncThunk(
     const res = await axios.delete(path, options);
     showToastr('The Reservation Deleted Successfully.');
     return { reservation_id: reservation.id, res_text: res.data };
-  }
+  },
 );

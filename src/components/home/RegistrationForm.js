@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { register } from '../../redux/authentication/authenticationThunk';
 
 const RegistrationForm = () => {
-  const authentication = useSelector(state => state.authentication)
+  const authentication = useSelector((state) => state.authentication);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -25,12 +25,8 @@ const RegistrationForm = () => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      const response = await dispatch(register({ ...formData, role: selectedRole }));
-      console.log('Response:', response);
-    } catch (error) {
-      console.log('Error:', error);
-    }
+
+    const response = await dispatch(register({ ...formData, role: selectedRole }));
   };
 
   return <>

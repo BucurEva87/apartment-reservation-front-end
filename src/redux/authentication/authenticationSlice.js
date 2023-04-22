@@ -83,9 +83,7 @@ const authenticationSlice = createSlice({
         }
       })
       .addCase(register.rejected, (state, action) => {
-        console.log('Your request was rejected. Here\'s why:')
-        console.log(action.payload.error)
-        // state.rejection = action.payload.error
+        state.rejection = action.payload.error;
       });
   },
 });

@@ -12,5 +12,5 @@ export default {
   DESTROY_APARTMENT_PATH: '/api/apartments',
   RESERVATIONS_PATH: '/api/reservations',
   NEW_RESERVATION_PATH: '/api/reservations',
-  DESTROY_RESERVATION_PATH: '/api/reservations'
+  DESTROY_RESERVATION_PATH: '/api/reservations',
 };
