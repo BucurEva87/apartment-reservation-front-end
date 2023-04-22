@@ -7,6 +7,7 @@ const initialState = {
   success: null,
   error: null,
   errorDescription: null,
+  rejection: null,
 };
 
 const authenticationSlice = createSlice({
@@ -42,28 +43,16 @@ const authenticationSlice = createSlice({
           return;
         }
 
-        const {
-          id,
-          name,
-          email,
-          role,
-          access_token,
-          token_type,
-          expires_in,
-          refresh_token,
-          created_at,
-        } = action.payload;
-
         state.user = {
-          id,
-          name,
-          email,
-          role,
-          accessToken: access_token,
-          tokenType: token_type,
-          expiresIn: expires_in,
-          refreshToken: refresh_token,
-          createdAt: created_at,
+          id: action.payload.id,
+          name: action.payload.name,
+          email: action.payload.email,
+          role: action.payload.role,
+          accessToken: action.payload.access_token,
+          tokenType: action.payload.token_type,
+          expiresIn: action.payload.expires_in,
+          refreshToken: action.payload.refresh_token,
+          createdAt: action.payload.created_at,
         };
 
         localStorage.setItem('accessToken', JSON.stringify({
@@ -77,29 +66,26 @@ const authenticationSlice = createSlice({
         state.success = false;
       })
       .addCase(register.fulfilled, (state, action) => {
-        const {
-          id,
-          name,
-          email,
-          role,
-          access_token,
-          token_type,
-          expires_in,
-          refresh_token,
-          created_at,
-        } = action.payload;
-
-        state.user = {
-          id,
-          name,
-          email,
-          role,
-          accessToken: access_token,
-          tokenType: token_type,
-          expiresIn: expires_in,
-          refreshToken: refresh_token,
-          createdAt: created_at,
-        };
+        if (action.payload.error) {
+          state.error = action.payload.error;
+        } else {
+          state.user = {
+            id: action.payload.user.id,
+            name: action.payload.user.name,
+            email: action.payload.user.email,
+            role: action.payload.user.role,
+            accessToken: action.payload.user.access_token,
+            tokenType: action.payload.user.token_type,
+            expiresIn: action.payload.user.expires_in,
+            refreshToken: action.payload.user.refresh_token,
+            createdAt: action.payload.user.created_at,
+          };
+        }
+      })
+      .addCase(register.rejected, (state, action) => {
+        console.log('Your request was rejected. Here\'s why:')
+        console.log(action.payload.error)
+        // state.rejection = action.payload.error
       });
   },
 });
