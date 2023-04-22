@@ -42,12 +42,28 @@ const authenticationSlice = createSlice({
           return;
         }
 
+        const {
+          id,
+          name,
+          email,
+          role,
+          access_token,
+          token_type,
+          expires_in,
+          refresh_token,
+          created_at,
+        } = action.payload;
+
         state.user = {
-          tokenType: action.payload.token_type,
-          accessToken: action.payload.access_token,
-          refreshToken: action.payload.refresh_token,
-          expiresIn: action.payload.expires_in,
-          createdAt: action.payload.created_at,
+          id,
+          name,
+          email,
+          role,
+          accessToken: access_token,
+          tokenType: token_type,
+          expiresIn: expires_in,
+          refreshToken: refresh_token,
+          createdAt: created_at,
         };
 
         localStorage.setItem('accessToken', JSON.stringify({
@@ -61,8 +77,28 @@ const authenticationSlice = createSlice({
         state.success = false;
       })
       .addCase(register.fulfilled, (state, action) => {
+        const {
+          id,
+          name,
+          email,
+          role,
+          access_token,
+          token_type,
+          expires_in,
+          refresh_token,
+          created_at,
+        } = action.payload;
+
         state.user = {
-          accessToken: JSON.parse(localStorage.getItem('accessToken')).data,
+          id,
+          name,
+          email,
+          role,
+          accessToken: access_token,
+          tokenType: token_type,
+          expiresIn: expires_in,
+          refreshToken: refresh_token,
+          createdAt: created_at,
         };
       });
   },
