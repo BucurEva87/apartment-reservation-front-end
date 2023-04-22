@@ -53,8 +53,9 @@ export const createReservation = createAsyncThunk(
 
 export const deleteReservation = createAsyncThunk(
   RESERVATION_DELETED,
-  async ({ reservation, accessToken }) => {
-    const path = `${client.BASE_URL}:${client.PORT}${client.DESTROY_RESERVATION_PATH}`;
+  async ({ id, accessToken }, thunkAPI) => {
+    console.log(`Deleting reservation ${id}`)
+    const path = `${client.BASE_URL}:${client.PORT}${client.DESTROY_RESERVATION_PATH}/${id}`;
     const options = {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -62,6 +63,7 @@ export const deleteReservation = createAsyncThunk(
     };
     const res = await axios.delete(path, options);
     showToastr('The Reservation Deleted Successfully.');
+    thunkAPI.dispatch(fetchReservations(accessToken));
     return { reservation_id: reservation.id, res_text: res.data };
   },
 );
